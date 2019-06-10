@@ -139,7 +139,7 @@ bool HelloWorld::init()
 	//色合いを設定
 	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
 	//不透明度を設定
-	//sprite->setOpacity(0);
+	sprite->setOpacity(255);
 
 	//update関数を呼ぶ
 	this->scheduleUpdate();
@@ -167,16 +167,33 @@ void HelloWorld::update(float delta)
 	Vec2 pos = sprite->getPosition();
 	//座標を移動させる
 	pos += Vec2(-1.0f, 0.0f);
+	
+	unsigned char opacity = sprite->getOpacity();
+
+	//5秒間で255減らす
+	//300frameで255減らす
+
+	opacity -= 255.0f/300.0f;
+	if (opacity < 0.0f)
+	{
+		opacity = 0.0f;
+	}
+	sprite->setOpacity(opacity);
+
+	Vec2 position;
 
 	int move = 5;
 
 	int n = 0;
 
-	switch(n)
+	/*switch(n)
 	{
 		case 1:
 			pos += Vec2(-1.0f, 0.0f);
-			break;
+			if ()
+			{
+				break;
+			}
 			
 		case 2:
 			pos += Vec2(0.0f, -1.0f);
@@ -190,7 +207,7 @@ void HelloWorld::update(float delta)
 			pos += Vec2(0.0f, 1.0f);
 			break;
 
-	}
+	}*/
 
 
 		//移動後の座標を反映

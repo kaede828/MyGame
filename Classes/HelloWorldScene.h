@@ -34,6 +34,8 @@ public:
 
 	cocos2d::Sprite*sprite;
 
+	float opacity;
+
     virtual bool init();
     
     // a selector callback
