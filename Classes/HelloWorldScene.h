@@ -33,8 +33,11 @@ public:
     static cocos2d::Scene* createScene();
 
 	cocos2d::Sprite*sprite;
+	cocos2d::Sprite*sprite2;
 
 	float opacity;
+
+	int state;
 
     virtual bool init();
     
@@ -45,6 +48,9 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+
+	
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
