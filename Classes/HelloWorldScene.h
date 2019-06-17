@@ -39,6 +39,8 @@ public:
 
 	int state;
 
+	float blue;
+
     virtual bool init();
     
     // a selector callback

@@ -124,11 +124,11 @@ bool HelloWorld::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 	sprite->setScale(4.0f);
 	//画像の基準点（アンカーポイント）を設定
-	sprite->setAnchorPoint(Vec2(0, 1.0f));
-	sprite->setRotation(135.0f);
+	/*sprite->setAnchorPoint(Vec2(0, 1.0f));
+	sprite->setRotation(135.0f);*/
 
+	sprite->setColor(Color3B(0, 0, 0));
 	sprite->setColor(Color3B(0, 0, 255));
-	sprite->setColor(Color3B(255, 0, 0));
 	opacity = 255.0f;
 
 	//反転
@@ -187,6 +187,13 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
+	blue += 255.0f/180.0f;
+	if (blue > 255.0f)
+	{
+		blue = 255.0f;
+	}
+	sprite->setColor(Color3B(255.0f-blue, 0, blue));
+
 	//回転
 	/*float rot = sprite->getRotation();
 	rot += float(-10.0f);
@@ -203,12 +210,12 @@ void HelloWorld::update(float delta)
 	////5秒間で255減らす
 	////300frameで255減らす
 
-	opacity -= 255.0f / 180.0f;
+	/*opacity -= 255.0f / 180.0f;
 	if (opacity < 0.0f)
 	{
 		
 	}
-	sprite->setOpacity(opacity);
+	sprite->setOpacity(opacity);*/
 
 
 
