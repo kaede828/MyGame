@@ -122,10 +122,24 @@ bool HelloWorld::init()
 	this->addChild(sprite);
 	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 	sprite->setScale(4.0f);
+	//action1の生成
+	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
+	sprite->runAction(action1);
+
+	// テクスチャファイル名を指定して、スプライトを作成
+	sprite2 = Sprite::create("Sample09.png");
+	// シーングラフにつなぐ
+	this->addChild(sprite2);
+	sprite2->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+	sprite2->setScale(4.0f);
+	//action1の生成
+	MoveBy* action2 = MoveBy::create(1.0f, Vec2(200, 100));
+	sprite2->runAction(action2);
 
 
 	
 	sprite->setTextureRect(Rect(0, 0, 32, 32));
+	sprite2->setTextureRect(Rect(0, 0, 32, 32));
 
 	//不透明度を設定
 	sprite->setOpacity(255);
@@ -141,8 +155,7 @@ bool HelloWorld::init()
 	//this->addChild(sprite);
 
 	//アクションの作成(1秒かけて　右に200,上に100動く)
-	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
-	sprite->runAction(action1);
+	
 	//ScaleBy* action1 = ScaleBy::create(1.0f,5.0f);
 	//JumpTo* action1 = JumpTo::create(1.0f, Vec2(200, 100),500.0f,2.0f);
 	//ccBezierConfig conf;
