@@ -32,8 +32,9 @@ class HelloWorld : public cocos2d::Scene
 public:
     static cocos2d::Scene* createScene();
 
-	cocos2d::Sprite*sprite;
-	cocos2d::Sprite*sprite2;
+	//cocos2d::Sprite*sprite;
+	//cocos2d::Sprite*sprite2;
+	cocos2d::Sprite* sprite[100];
 
 	/*float opacity;
 
