@@ -120,54 +120,40 @@ bool HelloWorld::init()
 	sprite = Sprite::create("Sample01.png");
 	// シーングラフにつなぐ
 	this->addChild(sprite);
-
 	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 	sprite->setScale(4.0f);
-	//画像の基準点（アンカーポイント）を設定
-	/*sprite->setAnchorPoint(Vec2(0, 1.0f));
-	sprite->setRotation(135.0f);*/
 
-	sprite->setColor(Color3B(0, 0, 0));
-	sprite->setColor(Color3B(0, 0, 255));
-	opacity = 255.0f;
 
-	//反転
-	//sprite->setFlippedX(true);
-
-	//切り取り
-	/*for (int i = 0; i < 3; i++)
-	{
-
-	}*/
+	
 	sprite->setTextureRect(Rect(0, 0, 32, 32));
 
-	//表示座標を指定
-	//sprite->setPosition(Vec2(1280, 720));
-
-	//回転角を指定
-	//sprite->setRotation(45.0f);
-
-
-	//拡縮を指定(横３倍,縦４倍)
-	//sprite->setScale(0.5f, 0.5f);
-
-	//左右反転
-	//sprite->setFlippedX(true);
-	//上下反転
-	//sprite->setFlippedY(true);
-	//非表示にする
-	//sprite->setVisible(false);
-	//色合いを設定
-	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
 	//不透明度を設定
 	sprite->setOpacity(255);
 
 	//update関数を呼ぶ
-	this->scheduleUpdate();
+
 
 	//左移動
-	state = 0;
+	//state = 0;
 
+	//スプライト(ノードの一種)の作成
+	//sprite = Sprite::create("HellowWorld.png");
+	//this->addChild(sprite);
+
+	//アクションの作成(1秒かけて　右に200,上に100動く)
+	//MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
+	//ScaleBy* action1 = ScaleBy::create(1.0f,5.0f);
+	//JumpTo* action1 = JumpTo::create(1.0f, Vec2(200, 100),500.0f,2.0f);
+	//ccBezierConfig conf;
+	//conf.controlPoint_1 = Vec2(800, 700);
+	//conf.controlPoint_2 = Vec2(1000, 700);
+	//conf.endPosition = Vec2(1000, 360);
+	//BezierTo* action1 = BezierTo::create(2.0f,conf);
+	sprite->setOpacity(0);
+	FadeIn* action1 = FadeIn::create(1.0f);
+	sprite ->runAction(action1);
+
+	this->scheduleUpdate();
 	return true;
 }
 
@@ -187,35 +173,8 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	blue += 255.0f/180.0f;
-	if (blue > 255.0f)
-	{
-		blue = 255.0f;
-	}
-	sprite->setColor(Color3B(255.0f-blue, 0, blue));
-
-	//回転
-	/*float rot = sprite->getRotation();
-	rot += float(-10.0f);
-	sprite->setRotation(rot);*/
-
-
-	//ここに毎フレーム処理を書く
-	Vec2 pos = sprite->getPosition();
-	////座標を移動させる
-	//pos += Vec2(-1.0f, 0.0f);
-
-	//unsigned char opacity = sprite->getOpacity();
-
-	////5秒間で255減らす
-	////300frameで255減らす
-
-	/*opacity -= 255.0f / 180.0f;
-	if (opacity < 0.0f)
-	{
-		
-	}
-	sprite->setOpacity(opacity);*/
+	
+	
 
 
 

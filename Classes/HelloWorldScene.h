@@ -35,11 +35,11 @@ public:
 	cocos2d::Sprite*sprite;
 	cocos2d::Sprite*sprite2;
 
-	float opacity;
+	/*float opacity;
 
 	int state;
 
-	float blue;
+	float blue;*/
 
     virtual bool init();
     
