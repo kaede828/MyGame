@@ -141,7 +141,8 @@ bool HelloWorld::init()
 	//this->addChild(sprite);
 
 	//アクションの作成(1秒かけて　右に200,上に100動く)
-	//MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
+	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
+	sprite->runAction(action1);
 	//ScaleBy* action1 = ScaleBy::create(1.0f,5.0f);
 	//JumpTo* action1 = JumpTo::create(1.0f, Vec2(200, 100),500.0f,2.0f);
 	//ccBezierConfig conf;
@@ -149,9 +150,13 @@ bool HelloWorld::init()
 	//conf.controlPoint_2 = Vec2(1000, 700);
 	//conf.endPosition = Vec2(1000, 360);
 	//BezierTo* action1 = BezierTo::create(2.0f,conf);
-	sprite->setOpacity(0);
-	FadeIn* action1 = FadeIn::create(1.0f);
-	sprite ->runAction(action1);
+	/*sprite->setOpacity(0);
+
+	//FadeIn* action1 = FadeIn::create(1.0f);*/
+	//アクションに対して、イージングをつけたアクションを生成する
+	//EaseInOut*action2 = EaseInOut::create(action1, 2.0f);
+	//イージング付きアクションの実行
+	
 
 	this->scheduleUpdate();
 	return true;
