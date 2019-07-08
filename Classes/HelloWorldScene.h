@@ -44,7 +44,8 @@ public:
 
     virtual bool init();
 
-	int audioID;
+	void myFunction();
+	void myFunction2(std::string filename);
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);

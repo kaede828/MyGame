@@ -81,40 +81,58 @@ bool HelloWorld::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	/////////////////////////////
-	// 3. add your codes below...
+	///////////////////////////////
+	//// 3. add your codes below...
 
-	// add a label shows "Hello World"
-	// create and initialize a label
+	//// add a label shows "Hello World"
+	//// create and initialize a label
 
-	auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-	if (label == nullptr)
-	{
-		problemLoading("'fonts/Marker Felt.ttf'");
-	}
-	else
-	{
-		// position the label on the center of the screen
-		label->setPosition(Vec2(origin.x + visibleSize.width / 2,
-			origin.y + visibleSize.height - label->getContentSize().height));
+	//auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+	//if (label == nullptr)
+	//{
+	//	problemLoading("'fonts/Marker Felt.ttf'");
+	//}
+	//else
+	//{
+	//	// position the label on the center of the screen
+	//	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
+	//		origin.y + visibleSize.height - label->getContentSize().height));
 
-		// add the label as a child to this layer
-		this->addChild(label, 1);
-	}
+	//	// add the label as a child to this layer
+	//	this->addChild(label, 1);
+	//}
+	DelayTime*delay = DelayTime::create(1.0f);
+	DelayTime*delay2 = DelayTime::create(2.0f);
 
-	//オーディオIDを入れる変数(メンバ変数にするとよい)
-	int audioID;
-	//再生すると、オーディオIDが割り振られる
-	audioID = experimental::AudioEngine::play2d("bgm_maoudamashii_cyber11.mp3", true,0.5f);
+	//関数呼び出しアクションの作成
+	//CC_CALLBACK_0 第一引数:呼び出したいメンバ関数
+	//CC_CALLBACK_0 台に引数:メンバ関数を呼び出すオブジェクト
+	//CallFunc* action = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction, this));
+	CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction, this,));
+	CallFunc* callFunc2 = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction2, this, "sample01.png"));
+	Sequence* seq = Sequence::create(delay, callFunc,delay2,callFunc2, nullptr);
 
-	//割り振られたオーディオIDを指定して止める
-	//experimental::AudioEngine::stop(audioID);
-
-	//割り振られたオーディオIDを指定して再開
-	//experimental::AudioEngine::resume(audioID);
+	//アクションを実行
+	this->runAction(seq);
 
 	this->scheduleUpdate();
 	return true;
+}
+
+void HelloWorld::myFunction()
+{
+	//任意の処理
+	Sprite* spr = Sprite::create("HelloWorld.png");
+	this->addChild(spr);
+	spr->setPosition(Vec2(500, 500));
+}
+
+void HelloWorld::myFunction2(std::string filename)
+{
+	//任意の処理
+	Sprite* spr = Sprite::create("Sample01.png");
+	this->addChild(spr);
+	spr->setPosition(Vec2(900, 500));
 }
 
 
@@ -134,12 +152,7 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 void HelloWorld::update(float delta)
 {
 
-	unsigned int total = Director::getInstance()->getTotalFrames();
 
-	if (total == 60)//1秒後
-	{
-		experimental::AudioEngine::stop(audioID);
-	}
 
 
 
@@ -186,4 +199,4 @@ void HelloWorld::update(float delta)
 
 	////移動後の座標を反映
 	//sprite->setPosition(pos);
-}
+} 
