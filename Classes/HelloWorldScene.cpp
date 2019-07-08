@@ -24,6 +24,7 @@
 
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -101,63 +102,16 @@ bool HelloWorld::init()
 		this->addChild(label, 1);
 	}
 
-	//スプライト(ノードの一種)の作成
-	Sprite* spr = Sprite::create("CloseNormal.png");
-	this->addChild(spr);
+	//オーディオIDを入れる変数(メンバ変数にするとよい)
+	int audioID;
+	//再生すると、オーディオIDが割り振られる
+	audioID = experimental::AudioEngine::play2d("bgm_maoudamashii_cyber11.mp3", true,0.5f);
 
-	spr -> setPosition(Vec2(1200.0f, 600.0f));
+	//割り振られたオーディオIDを指定して止める
+	//experimental::AudioEngine::stop(audioID);
 
-	MoveTo*moveTo = MoveTo::create(0.5f, Vec2(100.0f, 600.0f));
-	MoveTo*moveTo1 = MoveTo::create(0.5f, Vec2(1200.0f, 600.0f));
-
-	Sequence * seq = Sequence::create(moveTo, moveTo1, 2);
-
-	spr->runAction(seq);
-
-	//Repeat*repeat = Repeat::create(moveTo, 3);
-
-	//Spawn* spawn = Spawn::create(moveTo, nullptr);
-
-	
-
-	//指定秒数待つアクションの生成
-	//DelayTime * delay = DelayTime::create(1.0f);
-
-	//スプライト解放アクションの生成
-	//RemoveSelf * remove = RemoveSelf::create(1.0f);
-
-	//Sequence*seq = Sequence::create(spawn,nullptr);
-
-	//JumpBy*jumpBy = JumpBy::create(0.5f, Vec2(100.0f, 100.0f),100.0f,1);
-	//MoveTo*moveTo = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
-
-	//DelayTime * delay = DelayTime::create(1.0f);
-	////Hide*hide = Hide::create();
-	//ToggleVisibility*toggle = ToggleVisibility::create();
-
-	//Sequence* seq = Sequence::create(delay,toggle, nullptr);
-
-	//Repeat* rep = Repeat::create(seq, 6);
-
-	//spr->runAction(seq);
-
-	//アクション１の作成
-	//MoveTo* moveTo = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
-	//繰り返しアクションの作成
-	//Repeat* 
-
-    //アクション２の作成
-	//JumpTo* jumpTo = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
-
-	//TintTo* tintTo = TintTo::create(1.0f, Color3B(255, 255, 0));
-
-	//連続アクションの作成
-	//Spawn* spawn = Spawn::create(jumpTo, tintTo, nullptr);
-	//連続アクションの生成
-	//Sequence* seq = Sequence::create(moveTo, spawn, nullptr);
-
-	//連続アクションの実行
-	//spr->runAction(seq);
+	//割り振られたオーディオIDを指定して再開
+	//experimental::AudioEngine::resume(audioID);
 
 	this->scheduleUpdate();
 	return true;
@@ -179,6 +133,13 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
+
+	unsigned int total = Director::getInstance()->getTotalFrames();
+
+	if (total == 60)//1秒後
+	{
+		experimental::AudioEngine::stop(audioID);
+	}
 
 
 

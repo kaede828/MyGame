@@ -43,6 +43,8 @@ public:
 	float blue;*/
 
     virtual bool init();
+
+	int audioID;
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
